@@ -17,7 +17,7 @@ func _on_all_drops_finished():
     trigger_game_end()
     
 func start_new_round():
-    spawner.init(100, 10)
+    spawner.init(100, 20)
     target.color = Color.GREEN
     
 func trigger_game_end():
@@ -65,8 +65,8 @@ func calculate_color_score(player_color: Color, target_color: Color) -> Dictiona
     var sat_score = 1.0 - absf(player_color.s - target_color.s)
     var val_score = 1.0 - absf(player_color.v - target_color.v)
     # Weight them: 60% Hue, 20% Saturation, 20% Brightness
-    var hsv_score = (hue_score * 0.6) + (sat_score * 0.2) + (val_score * 0.2)
-    print(hsv_score)
+    var hsv_score = (hue_score * 0.65) + (sat_score * 0.25) + (val_score * 0.1)
+    print(hsv_score," ", hue_score, " ", sat_score, " ", val_score)
     accuracy = hsv_score
     
     # 4. Map accuracy to points (e.g. 0 to 1000 points)
@@ -93,6 +93,8 @@ func calculate_color_score(player_color: Color, target_color: Color) -> Dictiona
 # When round ends, or player reaches the goal gate:
 func evaluate_round(player_color: Color, target_color: Color, label: Label) -> void:
     var result = calculate_color_score(player_color, target_color)
+    var is_high_score = ScoreManager.add_score(result.points, result.accuracy_pct, result.grade)
+    
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect.color = player_color
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect2.color = target_color
     await get_tree().process_frame
@@ -103,6 +105,18 @@ func evaluate_round(player_color: Color, target_color: Color, label: Label) -> v
     Score: {points}
     Grade: {grade}
     """.format(result)
+    var highscore = ""
+    if is_high_score:
+        highscore += "high score!!\n"
+    for i in range(ScoreManager.high_scores.size()):
+        var entry = ScoreManager.high_scores[i]
+        highscore += "#%d  %d pts  (%s - %d%%)\n" % [
+            i + 1,
+            entry["score"],
+            entry["grade"],
+            entry["accuracy"]
+        ]
+    $HUD/GameOverPopup/VBoxContainer/HighScoreLabel.text = highscore
     
     # Bonus: Check if within a win tolerance threshold
     if result.accuracy_pct >= 85.0:

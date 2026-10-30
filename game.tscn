@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://jh67x5kmvuvg"]
 
 [ext_resource type="PackedScene" uid="uid://dy7k6p2k8837c" path="res://player.tscn" id="1_80nbo"]
-[ext_resource type="Script" uid="uid://oovrhihg00n6" path="res://round_manager.gd" id="1_fc0e3"]
+[ext_resource type="Script" uid="uid://oovrhihg00n6" path="res://scripts/round_manager.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c058exfebffk" path="res://cloud.tscn" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://b04ykn8mnrjk3" path="res://icon.svg" id="3_feb5d"]
 
@@ -129,3 +129,6 @@ horizontal_alignment = 1
 [node name="RestartButton" type="Button" parent="HUD/GameOverPopup/VBoxContainer" unique_id=1919849675]
 layout_mode = 2
 text = "Play Again"
+
+[node name="HighScoreLabel" type="Label" parent="HUD/GameOverPopup/VBoxContainer" unique_id=347059998]
+layout_mode = 2
