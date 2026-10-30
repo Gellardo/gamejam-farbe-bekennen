@@ -25,7 +25,6 @@ ScoreManager="*uid://bv1wv88acet0i"
 window/size/viewport_width=720
 window/size/viewport_height=1200
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 
 [input]

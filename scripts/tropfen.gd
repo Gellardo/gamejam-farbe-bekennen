@@ -47,7 +47,7 @@ func _on_body_entered(body: Node) -> void:
     queue_free()
 func _on_area_entered(body: Node) -> void:
     if body.is_in_group("umbrella"):
-        body = body.get_parent().get_parent()
+        body = body.owner
         if body.has_method("collect"):
             body.collect(color)
         queue_free()
