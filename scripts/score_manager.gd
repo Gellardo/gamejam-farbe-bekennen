@@ -1,7 +1,7 @@
 extends Node
 
-const SAVE_PATH: String = "user://highscores.json"
-const MAX_SCORES = 5
+const SAVE_PATH: String = "user://history.json"
+const MAX_SCORES = 500
 
 var high_scores = []
 
@@ -38,11 +38,13 @@ func save_scores() -> void:
     file.store_string(json_string)
     file.close()
 
-func add_score(score: int, accuracy_pct: float, grade: String) -> bool:
+func add_score(score: int, accuracy_pct: float, grade: String, target:Color, player: Color) -> bool:
     var entry = {
         "score": score,
         "accuracy": accuracy_pct,
         "grade": grade,
+        "target": target.to_rgba32(),
+        "player": player.to_rgba32(),
         "timestamp": Time.get_datetime_string_from_system(false, true)
     }
 

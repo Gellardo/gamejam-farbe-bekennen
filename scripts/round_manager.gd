@@ -18,7 +18,7 @@ func _on_all_drops_finished():
     
 func start_new_round():
     spawner.init(100, 20)
-    target.color = Color.GREEN
+    target.color = get_random_color()
     
 func trigger_game_end():
     var target_color = target.color
@@ -39,6 +39,12 @@ func trigger_game_end():
 func reset():
     get_tree().paused = false
     get_tree().reload_current_scene()
+    
+func get_random_color() -> Color:
+    var hue = randf()                             # Full rainbow: 0.0 to 1.0
+    var saturation = randf_range(0.7, 1.0)        # Keeps color rich, avoids gray/white
+    var value = randf_range(0.7, 1.0)             # Keeps color bright, avoids dark sludge
+    return Color.from_hsv(hue, saturation, value, 1.0)
   
 ##############
 # Scoring    #
@@ -93,7 +99,7 @@ func calculate_color_score(player_color: Color, target_color: Color) -> Dictiona
 # When round ends, or player reaches the goal gate:
 func evaluate_round(player_color: Color, target_color: Color, label: Label) -> void:
     var result = calculate_color_score(player_color, target_color)
-    var is_high_score = ScoreManager.add_score(result.points, result.accuracy_pct, result.grade)
+    var is_high_score = ScoreManager.add_score(result.points, result.accuracy_pct, result.grade, target_color, player_color)
     
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect.color = player_color
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect2.color = target_color
@@ -105,10 +111,10 @@ func evaluate_round(player_color: Color, target_color: Color, label: Label) -> v
     Score: {points}
     Grade: {grade}
     """.format(result)
-    var highscore = ""
+    var highscore = "\n"
     if is_high_score:
         highscore += "high score!!\n"
-    for i in range(ScoreManager.high_scores.size()):
+    for i in range(min(5, ScoreManager.high_scores.size())):
         var entry = ScoreManager.high_scores[i]
         highscore += "#%d  %d pts  (%s - %d%%)\n" % [
             i + 1,
