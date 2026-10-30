@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://jh67x5kmvuvg"]
+
+[ext_resource type="PackedScene" uid="uid://dy7k6p2k8837c" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://vmorvl1iwn58" path="res://tropfen.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://b04ykn8mnrjk3" path="res://icon.svg" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://bciaft585egue" path="res://scripts/cloud.gd" id="4_fc0e3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e2o6t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6lhik"]
+distance = -1136.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
+size = Vector2(670, 111)
+
+[node name="Game" type="Node2D" unique_id=1182312967]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=481348015]
+position = Vector2(363, 592)
+
+[node name="Player" parent="." unique_id=757642284 instance=ExtResource("1_80nbo")]
+position = Vector2(302, 1132)
+
+[node name="Background" type="Node" parent="." unique_id=1229567961]
+
+[node name="Ground" type="StaticBody2D" parent="Background" unique_id=844469753]
+physics_material_override = SubResource("PhysicsMaterial_e2o6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Ground" unique_id=1785358017]
+position = Vector2(141, 10)
+shape = SubResource("WorldBoundaryShape2D_6lhik")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ground" unique_id=1779319486]
+position = Vector2(320, 1180.0001)
+scale = Vector2(10.6484375, 0.4296875)
+texture = ExtResource("3_feb5d")
+
+[node name="Cloud" type="Area2D" parent="." unique_id=457645562]
+position = Vector2(-2, -1426)
+script = ExtResource("4_fc0e3")
+projectile_scene = ExtResource("2_e2o6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cloud" unique_id=319436459]
+position = Vector2(363, 1487.5)
+shape = SubResource("RectangleShape2D_hcsci")
+
+[node name="Timer" type="Timer" parent="Cloud" unique_id=1934741968]
+autostart = true
+
+[connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
