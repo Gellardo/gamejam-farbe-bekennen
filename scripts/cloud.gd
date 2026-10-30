@@ -8,6 +8,7 @@ extends Area2D
 @onready var timer : Timer = $Timer
 
 const palette = [Color.RED, Color.GREEN, Color.BLUE]
+const sizes = [1,2,3]
 
 signal all_drops_finished
 
@@ -34,7 +35,7 @@ func tropf() -> bool:
     # Instantiate and add to scene
     var bullet = projectile_scene.instantiate()
     bullet.global_position = spawn_pos
-    bullet.setup(Vector2.DOWN, palette.pick_random(), 2)
+    bullet.setup(Vector2.DOWN, palette.pick_random(), sizes.pick_random())
     
     #get_tree().current_scene.add_child(bullet)
     projectiles.add_child(bullet)

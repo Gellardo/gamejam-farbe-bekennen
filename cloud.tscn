@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bciaft585egue" path="res://scripts/cloud.gd" id="1_b3oxr"]
 [ext_resource type="PackedScene" uid="uid://vmorvl1iwn58" path="res://tropfen.tscn" id="2_qaedo"]
+[ext_resource type="Texture2D" uid="uid://bgelq3xtc08my" path="res://assets/Cloud.png" id="3_qaedo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
 size = Vector2(670, 111)
@@ -19,6 +20,21 @@ offset_left = -248.0
 offset_top = -42.0
 offset_right = -208.0
 offset_bottom = -19.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360490517]
+position = Vector2(131, 140)
+scale = Vector2(8, 8)
+texture = ExtResource("3_qaedo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=477348064]
+position = Vector2(350.99997, 131)
+scale = Vector2(7.9375, 7.9375)
+texture = ExtResource("3_qaedo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1304860439]
+position = Vector2(576.00006, 141)
+scale = Vector2(-7.938, 7.938)
+texture = ExtResource("3_qaedo")
 
 [node name="Timer" type="Timer" parent="." unique_id=770411149]
 autostart = true
