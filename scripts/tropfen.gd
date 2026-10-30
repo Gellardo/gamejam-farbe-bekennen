@@ -31,8 +31,8 @@ func _resize(new_size):
     if sprite:
         sprite.scale = Vector2(size, size)
         var capsule = collision.shape.duplicate() as CapsuleShape2D
-        capsule.radius *= 2
-        capsule.radius *= 2
+        capsule.height *= new_size
+        capsule.radius *= new_size
         collision.shape = capsule
 
 
