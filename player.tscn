@@ -6,16 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(193, 33)
 
-[node name="Player" type="Node2D" unique_id=757642284]
-
-[node name="PlayerBody" type="CharacterBody2D" parent="." unique_id=767424998]
+[node name="Player" type="CharacterBody2D" unique_id=767424998]
 script = ExtResource("1_4flbx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody" unique_id=1876514733]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1876514733]
 position = Vector2(91.5, -33.5)
 shape = SubResource("RectangleShape2D_sh265")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerBody" unique_id=1919871436]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1919871436]
 position = Vector2(78.000015, -36.5)
 scale = Vector2(7.874999, 2.28125)
 texture = ExtResource("2_onrkg")

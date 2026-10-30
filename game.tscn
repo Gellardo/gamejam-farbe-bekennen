@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jh67x5kmvuvg"]
 
 [ext_resource type="PackedScene" uid="uid://dy7k6p2k8837c" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://oovrhihg00n6" path="res://round_manager.gd" id="1_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://c058exfebffk" path="res://cloud.tscn" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://b04ykn8mnrjk3" path="res://icon.svg" id="3_feb5d"]
 
@@ -16,6 +17,7 @@ size = Vector2(207.5, 1246)
 size = Vector2(100, 1249)
 
 [node name="Game" type="Node2D" unique_id=1182312967]
+script = ExtResource("1_fc0e3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=481348015]
 position = Vector2(363, 592)
@@ -61,3 +63,41 @@ texture = ExtResource("3_feb5d")
 
 [node name="Cloud" parent="." unique_id=281911265 instance=ExtResource("3_fc0e3")]
 position = Vector2(1, -10)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=474887139]
+
+[node name="TargetColor" type="ColorRect" parent="HUD" unique_id=626826999]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_right = -2.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="GameOverPopup" type="ColorRect" parent="HUD" unique_id=119195358]
+process_mode = 2
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverPopup" unique_id=1343402645]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 239.0
+offset_right = 553.0
+offset_bottom = 763.0
+alignment = 1
+
+[node name="ResultLabel" type="Label" parent="HUD/GameOverPopup/VBoxContainer" unique_id=743697189]
+layout_mode = 2
+text = "You did ok."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="HUD/GameOverPopup/VBoxContainer" unique_id=1919849675]
+layout_mode = 2
+text = "Play Again"

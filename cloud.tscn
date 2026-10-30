@@ -19,9 +19,10 @@ offset_left = -248.0
 offset_top = -42.0
 offset_right = -208.0
 offset_bottom = -19.0
-text = "Text"
 
 [node name="Timer" type="Timer" parent="." unique_id=770411149]
 autostart = true
+
+[node name="projectiles" type="Node" parent="." unique_id=687949845]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
