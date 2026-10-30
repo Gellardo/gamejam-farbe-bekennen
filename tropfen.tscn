@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vmorvl1iwn58"]
 
-[ext_resource type="Texture2D" uid="uid://tsg8owqalk1t" path="res://assets/Tropfen.png" id="1_kteey"]
 [ext_resource type="Script" uid="uid://bgkd7b2sqrxnf" path="res://scripts/tropfen.gd" id="1_vjvvs"]
+[ext_resource type="Texture2D" uid="uid://buh76johfd7qq" path="res://assets/Tropfen.png" id="2_vjvvs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lhik"]
 
@@ -11,7 +11,7 @@ script = ExtResource("1_vjvvs")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1022797635]
 position = Vector2(0.5000005, -0.49999928)
 scale = Vector2(1.4687499, 1.65625)
-texture = ExtResource("1_kteey")
+texture = ExtResource("2_vjvvs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1522116962]
 shape = SubResource("CapsuleShape2D_6lhik")

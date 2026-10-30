@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://jh67x5kmvuvg"]
 
 [ext_resource type="PackedScene" uid="uid://dy7k6p2k8837c" path="res://player.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://vmorvl1iwn58" path="res://tropfen.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://c058exfebffk" path="res://cloud.tscn" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://b04ykn8mnrjk3" path="res://icon.svg" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://bciaft585egue" path="res://scripts/cloud.gd" id="4_fc0e3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e2o6t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6lhik"]
 distance = -1136.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
-size = Vector2(670, 111)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(207.5, 1246)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(100, 1249)
 
 [node name="Game" type="Node2D" unique_id=1182312967]
 
@@ -19,7 +21,7 @@ size = Vector2(670, 111)
 position = Vector2(363, 592)
 
 [node name="Player" parent="." unique_id=757642284 instance=ExtResource("1_80nbo")]
-position = Vector2(302, 1132)
+position = Vector2(242, 1142)
 
 [node name="Background" type="Node" parent="." unique_id=1229567961]
 
@@ -35,16 +37,27 @@ position = Vector2(320, 1180.0001)
 scale = Vector2(10.6484375, 0.4296875)
 texture = ExtResource("3_feb5d")
 
-[node name="Cloud" type="Area2D" parent="." unique_id=457645562]
-position = Vector2(-2, -1426)
-script = ExtResource("4_fc0e3")
-projectile_scene = ExtResource("2_e2o6t")
+[node name="LeftWall" type="StaticBody2D" parent="Background" unique_id=297536896]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cloud" unique_id=319436459]
-position = Vector2(363, 1487.5)
-shape = SubResource("RectangleShape2D_hcsci")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/LeftWall" unique_id=299336342]
+position = Vector2(-84.75, 600)
+shape = SubResource("RectangleShape2D_fc0e3")
 
-[node name="Timer" type="Timer" parent="Cloud" unique_id=1934741968]
-autostart = true
+[node name="Sprite2D" type="Sprite2D" parent="Background/LeftWall" unique_id=1552600545]
+position = Vector2(-86, 604)
+scale = Vector2(1.609375, 9.75)
+texture = ExtResource("3_feb5d")
 
-[connection signal="timeout" from="Cloud/Timer" to="Cloud" method="_on_timer_timeout"]
+[node name="RightWall" type="StaticBody2D" parent="Background" unique_id=625722766]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/RightWall" unique_id=427792333]
+position = Vector2(750, 596.5)
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/RightWall" unique_id=1874843985]
+position = Vector2(751.5, 604.99994)
+scale = Vector2(0.7734373, 9.765626)
+texture = ExtResource("3_feb5d")
+
+[node name="Cloud" parent="." unique_id=281911265 instance=ExtResource("3_fc0e3")]
+position = Vector2(1, -10)

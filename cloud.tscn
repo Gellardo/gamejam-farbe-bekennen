@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c058exfebffk"]
+
+[ext_resource type="Script" uid="uid://bciaft585egue" path="res://scripts/cloud.gd" id="1_b3oxr"]
+[ext_resource type="PackedScene" uid="uid://vmorvl1iwn58" path="res://tropfen.tscn" id="2_qaedo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
+size = Vector2(670, 111)
+
+[node name="Cloud" type="Area2D" unique_id=281911265]
+script = ExtResource("1_b3oxr")
+projectile_scene = ExtResource("2_qaedo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955785203]
+position = Vector2(358, 68)
+shape = SubResource("RectangleShape2D_hcsci")
+
+[node name="Label" type="Label" parent="CollisionShape2D" unique_id=1261832844]
+offset_left = -248.0
+offset_top = -42.0
+offset_right = -208.0
+offset_bottom = -19.0
+text = "Text"
+
+[node name="Timer" type="Timer" parent="." unique_id=770411149]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,17 +1,21 @@
 extends Area2D
 
 @export var projectile_scene: PackedScene
+@export var water = 10
 @onready var col_shape: CollisionShape2D = $CollisionShape2D
+@onready var label: Label = $CollisionShape2D/Label
+
+const palette = [Color.RED, Color.GREEN, Color.BLUE]
 
 func tropf():
     var rect_shape = col_shape.shape as RectangleShape2D
-    if not rect_shape or not projectile_scene:
+    if water <=0 or not rect_shape or not projectile_scene:
         return
     
     # Calculate a random coordinate inside the shape's boundaries
     var extents = rect_shape.size / 2.0
     var random_offset = Vector2(
-        randf_range(-extents.x, extents.y),
+        randf_range(-extents.x, extents.x),
         randf_range(-extents.y, extents.y)
     )
     
@@ -20,9 +24,11 @@ func tropf():
     # Instantiate and add to scene
     var bullet = projectile_scene.instantiate()
     bullet.global_position = spawn_pos
-    bullet.direction = Vector2.DOWN # Or customize per wave
+    bullet.setup(Vector2.DOWN, palette.pick_random())
     
     get_tree().current_scene.add_child(bullet)
+    water -= 1
+    label.text = str(water)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
