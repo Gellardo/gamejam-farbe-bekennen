@@ -5,11 +5,16 @@ extends Area2D
 @onready var col_shape: CollisionShape2D = $CollisionShape2D
 @onready var label: Label = $CollisionShape2D/Label
 @onready var projectiles: Node = $projectiles
+@onready var timer : Timer = $Timer
 
 const palette = [Color.RED, Color.GREEN, Color.BLUE]
 
 signal all_drops_finished
 
+func init(init_water:int, time: int) -> void:
+    water = init_water
+    timer.wait_time = 1.0 * time / water
+    
 func still_wet() -> bool:
     return water > 0 or projectiles.get_child_count() > 0
 func tropf() -> bool:
@@ -29,23 +34,13 @@ func tropf() -> bool:
     # Instantiate and add to scene
     var bullet = projectile_scene.instantiate()
     bullet.global_position = spawn_pos
-    bullet.setup(Vector2.DOWN, palette.pick_random())
+    bullet.setup(Vector2.DOWN, palette.pick_random(), 2)
     
     #get_tree().current_scene.add_child(bullet)
     projectiles.add_child(bullet)
     water -= 1
     label.text = str(water)
     return true
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-    pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
-
 
 func _on_timer_timeout() -> void:
     if still_wet():

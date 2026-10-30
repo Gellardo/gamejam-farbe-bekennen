@@ -16,6 +16,11 @@ size = Vector2(207.5, 1246)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
 size = Vector2(100, 1249)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6lhik"]
+font_size = 20
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D" unique_id=1182312967]
 script = ExtResource("1_fc0e3")
 
@@ -75,6 +80,17 @@ offset_right = -2.0
 offset_bottom = 128.0
 grow_horizontal = 0
 
+[node name="Label" type="Label" parent="HUD/TargetColor" unique_id=818453112]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 69.0
+text = "Ziel-
+Farbe"
+label_settings = SubResource("LabelSettings_6lhik")
+horizontal_alignment = 1
+
 [node name="GameOverPopup" type="ColorRect" parent="HUD" unique_id=119195358]
 process_mode = 2
 visible = false
@@ -83,15 +99,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.8)
+color = Color(0, 0, 0, 0.93333334)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverPopup" unique_id=1343402645]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 239.0
-offset_right = 553.0
-offset_bottom = 763.0
+offset_left = 199.0
+offset_top = 240.0
+offset_right = 552.0
+offset_bottom = 764.0
 alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/GameOverPopup/VBoxContainer" unique_id=930218652]
+layout_mode = 2
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="HUD/GameOverPopup/VBoxContainer/HBoxContainer" unique_id=726483885]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="HUD/GameOverPopup/VBoxContainer/HBoxContainer" unique_id=1821771718]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 
 [node name="ResultLabel" type="Label" parent="HUD/GameOverPopup/VBoxContainer" unique_id=743697189]
 layout_mode = 2

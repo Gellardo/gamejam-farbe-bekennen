@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 500.0
 
-var current_color = Color.BLACK
+var current_color = Color.GRAY
 
 func collect(color: Color):
     current_color = current_color.lerp(color, 0.25)
