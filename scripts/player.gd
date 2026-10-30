@@ -3,15 +3,31 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 
+@onready var visuals = $Visuals
+@onready var umbrella = $Visuals/SpriteUmbrella
+@onready var dynamic_umbrella = $Area2D/CollisionPolygon2D
+
 var current_color = Color.GRAY
 var drops = 0
+var facing_direction = 1
 
 func collect(color: Color):
     current_color = current_color.lerp(color, 0.25)
-    $Sprite2D.modulate = current_color
+    umbrella.modulate = current_color
+    
+func set_facing(dir: int) -> void:
+    if dir == 0 or dir == facing_direction:
+        return
+    facing_direction = sign(dir)
+    # Flips both Top and Bottom sprites simultaneously without desyncing
+    # Including the hurtbox is fine since it is not involved in moving,
+    # only projectile collisions. It flips together with the sprites
+    visuals.scale.x = facing_direction
     
 func _ready() -> void:
-    $Sprite2D.modulate = current_color
+    umbrella.modulate = current_color
+    if dynamic_umbrella:
+        dynamic_umbrella.shape = dynamic_umbrella.shape.duplicate()
 
 func _physics_process(delta: float) -> void:
 
@@ -20,6 +36,7 @@ func _physics_process(delta: float) -> void:
     var direction := Input.get_axis("left", "right")
     if direction:
         velocity.x = direction * SPEED
+        set_facing(direction)
     else:
         velocity.x = move_toward(velocity.x, 0, SPEED)
 

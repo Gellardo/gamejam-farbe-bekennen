@@ -1,4 +1,5 @@
 # Created by https://gitignore.org
+.DS_Store
 # Godot.gitignore
 
 # Godot 4.2+ specific ignores

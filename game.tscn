@@ -27,8 +27,8 @@ script = ExtResource("1_fc0e3")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=481348015]
 position = Vector2(363, 592)
 
-[node name="Player" parent="." unique_id=757642284 instance=ExtResource("1_80nbo")]
-position = Vector2(242, 1142)
+[node name="Cloud" parent="." unique_id=281911265 instance=ExtResource("3_fc0e3")]
+position = Vector2(1, 34)
 
 [node name="Background" type="Node" parent="." unique_id=1229567961]
 
@@ -66,8 +66,9 @@ position = Vector2(751.5, 604.99994)
 scale = Vector2(0.7734373, 9.765626)
 texture = ExtResource("3_feb5d")
 
-[node name="Cloud" parent="." unique_id=281911265 instance=ExtResource("3_fc0e3")]
-position = Vector2(1, 34)
+[node name="Player" parent="." unique_id=757642284 instance=ExtResource("1_80nbo")]
+z_index = 1
+position = Vector2(242, 1139)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=474887139]
 

@@ -10,7 +10,9 @@ var size: int = 1
 
 func _ready() -> void:
     # Connect signals (or connect them via the Node dock)
+    area_entered.connect(_on_area_entered)
     body_entered.connect(_on_body_entered)
+    sprite.frame = randi_range(0,sprite.hframes)
     sprite.modulate = color
     _resize(size)
 
@@ -38,8 +40,14 @@ func _physics_process(delta: float) -> void:
     position += direction * speed * delta
 
 func _on_body_entered(body: Node) -> void:
-    if body.has_method("collect"):
-        body.collect(color)
+    if body.is_in_group("player"):
+        print("hit body")
     else:
         print("hit terrain")
     queue_free()
+func _on_area_entered(body: Node) -> void:
+    if body.is_in_group("umbrella"):
+        body = body.get_parent().get_parent()
+        if body.has_method("collect"):
+            body.collect(color)
+        queue_free()
