@@ -24,7 +24,7 @@ projectile_scene = ExtResource("2_qaedo")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1356190495]
 script = ExtResource("3_sytix")
 rain_intensity = 0.5
-droplet_volume = 0.2
+droplet_volume = 0.15
 drops_per_second = 20.0
 
 [node name="Timer" type="Timer" parent="." unique_id=770411149]

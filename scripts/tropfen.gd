@@ -12,8 +12,9 @@ func _ready() -> void:
     # Connect signals (or connect them via the Node dock)
     area_entered.connect(_on_area_entered)
     body_entered.connect(_on_body_entered)
-    sprite.frame = randi_range(0,sprite.hframes)
+    sprite.frame = randi_range(0,sprite.hframes-1)
     sprite.modulate = color
+    sprite.set_instance_shader_parameter("phase_offset", randf() * TAU)
     _resize(size)
 
 # Clean setup function to call right after instantiating

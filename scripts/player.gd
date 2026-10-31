@@ -6,7 +6,6 @@ const TOUCH_DEAD_ZONE = 10
 
 @onready var visuals = $Visuals
 @onready var umbrella = $Visuals/SpriteUmbrella
-@onready var dynamic_umbrella = $Area2D/CollisionPolygon2D
 
 var touch_target_x = 0.0
 var is_touching = false
@@ -38,8 +37,6 @@ func update_facing(delta) -> void:
     
 func _ready() -> void:
     umbrella.modulate = current_color
-    if dynamic_umbrella:
-        dynamic_umbrella.shape = dynamic_umbrella.shape.duplicate()
 
 func _physics_process(delta: float) -> void:
 

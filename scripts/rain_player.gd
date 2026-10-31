@@ -29,7 +29,7 @@ func _ready() -> void:
 
     var stream_gen := AudioStreamGenerator.new()
     stream_gen.mix_rate = sample_rate
-    stream_gen.buffer_length = 0.1
+    stream_gen.buffer_length = 0.2
     stream = stream_gen
 
     for i in range(MAX_CONCURRENT_DROPS):

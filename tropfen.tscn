@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://vmorvl1iwn58"]
 
 [ext_resource type="Script" uid="uid://bgkd7b2sqrxnf" path="res://scripts/tropfen.gd" id="1_vjvvs"]
+[ext_resource type="Shader" uid="uid://cqcaqyqsioem5" path="res://scripts/drop.gdshader" id="2_5ncwy"]
 [ext_resource type="Texture2D" uid="uid://d4gfi46euevle" path="res://assets/Tropfen.png" id="2_vjvvs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqtel"]
+shader = ExtResource("2_5ncwy")
+shader_parameter/pulse_speed = 4.505000210727619
+shader_parameter/min_brightness = 0.70000003325
+shader_parameter/max_brightness = 1.2000000095
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lhik"]
 height = 26.0
@@ -10,6 +17,7 @@ height = 26.0
 script = ExtResource("1_vjvvs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1022797635]
+material = SubResource("ShaderMaterial_hqtel")
 position = Vector2(0.5000005, -0.49999928)
 scale = Vector2(1.4687499, 1.65625)
 texture = ExtResource("2_vjvvs")

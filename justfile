@@ -1,4 +1,5 @@
 build:
+	mkdir -p builds/web
 	godot --headless --export-release "Web" "builds/web/index.html"
 
 serve:

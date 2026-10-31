@@ -12,10 +12,10 @@
 distance = -1136.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
-size = Vector2(234.5, 1246)
+size = Vector2(234.5, 272)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
-size = Vector2(127, 1249)
+size = Vector2(127, 246)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6lhik"]
 font_size = 20
@@ -52,24 +52,24 @@ texture = ExtResource("3_feb5d")
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/LeftWall" unique_id=299336342]
-position = Vector2(-71.25, 600)
+position = Vector2(-71.25, 1087)
 shape = SubResource("RectangleShape2D_fc0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/LeftWall" unique_id=1552600545]
-position = Vector2(-72.5, 604)
-scale = Vector2(1.8203125, 9.75)
+position = Vector2(-72.5, 1097)
+scale = Vector2(1.8203125, 2.0468748)
 texture = ExtResource("3_feb5d")
 
 [node name="RightWall" type="StaticBody2D" parent="Background2" unique_id=625722766]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/RightWall" unique_id=427792333]
-position = Vector2(736.5, 596.5)
+position = Vector2(736.5, 1098)
 shape = SubResource("RectangleShape2D_7jktm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Background2/RightWall" unique_id=1874843985]
-position = Vector2(738.5, 604.99994)
-scale = Vector2(0.9765628, 9.765626)
+position = Vector2(738.5, 1100.5)
+scale = Vector2(0.9765628, 2.0234375)
 texture = ExtResource("3_feb5d")
 
 [node name="Cloud" parent="." unique_id=281911265 instance=ExtResource("3_fc0e3")]
