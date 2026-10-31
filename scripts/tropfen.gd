@@ -7,6 +7,7 @@ var size: int = 1
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
+const SPLASH = preload("res://Splash.tscn")
 
 func _ready() -> void:
     # Connect signals (or connect them via the Node dock)
@@ -36,6 +37,13 @@ func _resize(new_size):
         capsule.radius *= new_size
         collision.shape = capsule
 
+func destroy():
+    var splash = SPLASH.instantiate()
+    var tint: Color = sprite.modulate
+    var capsule = collision.shape as CapsuleShape2D
+    splash.setup(global_position+ + Vector2(0, capsule.height * 0.5 * global_scale.y), tint, size)
+    get_parent().add_child(splash)
+    queue_free()
 
 func _physics_process(delta: float) -> void:
     position += direction * speed * delta
@@ -47,10 +55,10 @@ func _on_body_entered(body: Node) -> void:
     else:
         #print("hit terrain")
         pass
-    queue_free()
+    destroy()
 func _on_area_entered(body: Node) -> void:
     if body.is_in_group("umbrella"):
         body = body.owner
         if body.has_method("collect"):
             body.collect(color, size)
-        queue_free()
+        destroy()
