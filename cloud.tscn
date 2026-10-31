@@ -14,7 +14,7 @@ atlas = ExtResource("4_fcyt7")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
-size = Vector2(670, 111)
+size = Vector2(670, 75.5)
 
 [node name="Cloud" type="Area2D" unique_id=281911265]
 script = ExtResource("1_b3oxr")
@@ -44,7 +44,7 @@ scale = Vector2(7.938, -7.938)
 texture = SubResource("AtlasTexture_uw4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955785203]
-position = Vector2(358, 68)
+position = Vector2(358, 85.75)
 shape = SubResource("RectangleShape2D_hcsci")
 
 [node name="Label" type="Label" parent="CollisionShape2D" unique_id=1261832844]

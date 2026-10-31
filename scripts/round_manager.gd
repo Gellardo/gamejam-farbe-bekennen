@@ -17,7 +17,7 @@ func _on_all_drops_finished():
     trigger_game_end()
     
 func start_new_round():
-    spawner.init(1000, 20)
+    spawner.init(100, 10)
     target.color = ColorManager.get_random_color()
     
 func trigger_game_end():
@@ -97,8 +97,6 @@ func evaluate_round(player_color: Color, target_color: Color, label: Label) -> v
     
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect.color = player_color
     $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect2.color = target_color
-    await get_tree().process_frame
-    fly_color_rect($HUD/TargetColor, $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect2)
     label.text = """
     --- ROUND OVER ---
     Accuracy: {accuracy_pct}%
@@ -106,17 +104,23 @@ func evaluate_round(player_color: Color, target_color: Color, label: Label) -> v
     Grade: {grade}
     """.format(result)
     var highscore = "\n"
-    if is_high_score:
-        highscore += "high score!!\n"
+    if true or is_high_score:
+        highscore += """
+        !1!!!!!!!
+        NEW HIGH SCORE
+        !!!!!!1!!
+        """.dedent() + "\n"
     for i in range(min(5, ScoreManager.high_scores.size())):
         var entry = ScoreManager.high_scores[i]
-        highscore += "#%d  %d pts  (%s - %d%%)\n" % [
+        highscore += "#%1d %4d pts  (%8s - %3d%%)\n" % [
             i + 1,
             entry["score"],
             entry["grade"],
             entry["accuracy"]
         ]
     $HUD/GameOverPopup/VBoxContainer/HighScoreLabel.text = highscore
+    await get_tree().process_frame # allow correct positions to settle in vbox
+    fly_color_rect($HUD/TargetColor, $HUD/GameOverPopup/VBoxContainer/HBoxContainer/ColorRect2)
     
     # Bonus: Check if within a win tolerance threshold
     if result.accuracy_pct >= 85.0:
@@ -136,7 +140,7 @@ func fly_color_rect(from: ColorRect, to: ColorRect):
     #to.visible = false
     to.color= Color.TRANSPARENT
     
-    var duration = 0.4
+    var duration = 0.6
     var dummy = ColorRect.new()
     dummy.color = from.color
     dummy.size = from.size
@@ -146,8 +150,8 @@ func fly_color_rect(from: ColorRect, to: ColorRect):
     # 4. Create parallel tween
     var tween = create_tween().set_parallel(true)
     tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-    tween.set_trans(Tween.TRANS_LINEAR)
-    tween.set_ease(Tween.EASE_IN_OUT)
+    tween.set_trans(Tween.TRANS_CUBIC)
+    tween.set_ease(Tween.EASE_OUT)
     tween.tween_property(dummy, "global_position", to.global_position, duration)
     tween.tween_property(dummy, "size", to.size, duration)
     
