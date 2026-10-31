@@ -27,6 +27,10 @@ window/size/viewport_height=1200
 window/stretch/mode="canvas_items"
 window/handheld/orientation=1
 
+[gui]
+
+theme/custom="uid://tg16hhk64qdf"
+
 [input]
 
 left={

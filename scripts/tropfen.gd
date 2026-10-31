@@ -42,12 +42,14 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node) -> void:
     if body.is_in_group("player"):
         print("hit body")
+        pass
     else:
-        print("hit terrain")
+        #print("hit terrain")
+        pass
     queue_free()
 func _on_area_entered(body: Node) -> void:
     if body.is_in_group("umbrella"):
         body = body.owner
         if body.has_method("collect"):
-            body.collect(color)
+            body.collect(color, size)
         queue_free()

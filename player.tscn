@@ -82,7 +82,7 @@ scale = Vector2(7, 7)
 sprite_frames = SubResource("SpriteFrames_6lhik")
 animation = &"bob"
 autoplay = "bob"
-frame_progress = 0.81077486
+frame_progress = 0.851705
 
 [node name="SpriteFigure" type="AnimatedSprite2D" parent="Visuals" unique_id=1271758960]
 position = Vector2(3.0000076, -85)

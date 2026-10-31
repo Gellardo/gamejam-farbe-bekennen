@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bgelq3xtc08my" path="res://assets/Cloud.png" id="3_qaedo"]
 [ext_resource type="Texture2D" uid="uid://dr316j30evyyg" path="res://assets/Cloud2.png" id="4_fcyt7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
-size = Vector2(670, 111)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0us1v"]
 atlas = ExtResource("4_fcyt7")
 region = Rect2(0, 0, 32, 32)
@@ -16,38 +13,46 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("4_fcyt7")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcsci"]
+size = Vector2(670, 111)
+
 [node name="Cloud" type="Area2D" unique_id=281911265]
 script = ExtResource("1_b3oxr")
 projectile_scene = ExtResource("2_qaedo")
+
+[node name="Timer" type="Timer" parent="." unique_id=770411149]
+autostart = true
+
+[node name="projectiles" type="Node" parent="." unique_id=687949845]
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1698789556]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=1360490517]
+position = Vector2(354, 143)
+scale = Vector2(8, 8)
+texture = ExtResource("3_qaedo")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Visuals" unique_id=477348064]
+position = Vector2(136.99997, 142)
+scale = Vector2(7.9375, 7.9375)
+texture = SubResource("AtlasTexture_0us1v")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Visuals" unique_id=1304860439]
+position = Vector2(576.00006, 141)
+rotation = 3.1415925
+scale = Vector2(7.938, -7.938)
+texture = SubResource("AtlasTexture_uw4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955785203]
 position = Vector2(358, 68)
 shape = SubResource("RectangleShape2D_hcsci")
 
 [node name="Label" type="Label" parent="CollisionShape2D" unique_id=1261832844]
-offset_left = -248.0
-offset_top = -42.0
-offset_right = -208.0
-offset_bottom = -19.0
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1360490517]
-position = Vector2(354, 143)
-scale = Vector2(8, 8)
-texture = ExtResource("3_qaedo")
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=477348064]
-position = Vector2(136.99997, 142)
-scale = Vector2(7.9375, 7.9375)
-texture = SubResource("AtlasTexture_0us1v")
-
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1304860439]
-position = Vector2(576.00006, 141)
-scale = Vector2(-7.938, 7.938)
-texture = SubResource("AtlasTexture_uw4j0")
-
-[node name="Timer" type="Timer" parent="." unique_id=770411149]
-autostart = true
-
-[node name="projectiles" type="Node" parent="." unique_id=687949845]
+offset_left = -34.0
+offset_top = -13.0
+offset_right = 40.0
+offset_bottom = 10.0
+theme_override_constants/outline_size = 2
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

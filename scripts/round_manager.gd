@@ -17,8 +17,8 @@ func _on_all_drops_finished():
     trigger_game_end()
     
 func start_new_round():
-    spawner.init(100, 20)
-    target.color = get_random_color()
+    spawner.init(1000, 20)
+    target.color = ColorManager.get_random_color()
     
 func trigger_game_end():
     var target_color = target.color
@@ -39,12 +39,6 @@ func trigger_game_end():
 func reset():
     get_tree().paused = false
     get_tree().reload_current_scene()
-    
-func get_random_color() -> Color:
-    var hue = randf()                             # Full rainbow: 0.0 to 1.0
-    var saturation = randf_range(0.7, 1.0)        # Keeps color rich, avoids gray/white
-    var value = randf_range(0.7, 1.0)             # Keeps color bright, avoids dark sludge
-    return Color.from_hsv(hue, saturation, value, 1.0)
   
 ##############
 # Scoring    #

@@ -7,12 +7,12 @@ const SPEED = 500.0
 @onready var umbrella = $Visuals/SpriteUmbrella
 @onready var dynamic_umbrella = $Area2D/CollisionPolygon2D
 
-var current_color = Color.GRAY
+var current_color = Color.LIGHT_GRAY
 var drops = 0
 var facing_direction = 1
 
-func collect(color: Color):
-    current_color = current_color.lerp(color, 0.25)
+func collect(color: Color, size: int):
+    current_color = ColorManager.color_blend(current_color, color, size*0.1)
     umbrella.modulate = current_color
     
 func set_facing(dir: int, delta) -> void:

@@ -2,17 +2,19 @@ extends Area2D
 
 @export var projectile_scene: PackedScene
 @export var water = 10
+@export var initial_water = 10
 @onready var col_shape: CollisionShape2D = $CollisionShape2D
 @onready var label: Label = $CollisionShape2D/Label
+@onready var visuals = $Visuals
 @onready var projectiles: Node = $projectiles
 @onready var timer : Timer = $Timer
 
-const palette = [Color.RED, Color.GREEN, Color.BLUE]
 const sizes = [1,2,3]
 
 signal all_drops_finished
 
 func init(init_water:int, time: int) -> void:
+    initial_water = init_water
     water = init_water
     timer.wait_time = 1.0 * time / water
     
@@ -35,12 +37,18 @@ func tropf() -> bool:
     # Instantiate and add to scene
     var bullet = projectile_scene.instantiate()
     bullet.global_position = spawn_pos
-    bullet.setup(Vector2.DOWN, palette.pick_random(), sizes.pick_random())
+    bullet.setup(Vector2.DOWN, ColorManager.palette.pick_random(), sizes.pick_random())
     
     #get_tree().current_scene.add_child(bullet)
     projectiles.add_child(bullet)
     water -= 1
+    
     label.text = str(water)
+    var t: float = remap(water, 0, initial_water, 0.0, 1.0)
+    t = clampf(t, 0.0, 1.0)
+    var stepped_t: float = snappedf(t, 0.1) 
+    visuals.modulate = Color.DIM_GRAY.lerp(Color.WHITE, stepped_t)
+    
     return true
 
 func _on_timer_timeout() -> void:
