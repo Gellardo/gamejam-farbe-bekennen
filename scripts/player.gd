@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 const SPEED = 500.0
+const FLIP_SPEED = 25.0
+const TOUCH_DEAD_ZONE = 10
 
 @onready var visuals = $Visuals
 @onready var umbrella = $Visuals/SpriteUmbrella
@@ -25,14 +27,14 @@ func collect(color: Color, size: int):
     current_color = ColorManager.color_blend(current_color, color, size*0.1)
     umbrella.modulate = current_color
     
-func set_facing(dir: int, delta) -> void:
-    if dir == 0 or dir == facing_direction and absf(visuals.scale.x) == 1:
-        return
-    facing_direction = sign(dir)
-    # Flips both Top and Bottom sprites simultaneously without desyncing
-    # Including the hurtbox is fine since it is not involved in moving,
-    # only projectile collisions. It flips together with the sprites
-    visuals.scale.x = lerp(visuals.scale.x, 1.0*facing_direction, 30.0*delta)
+func update_facing(delta) -> void:
+    if not is_equal_approx(facing_direction, visuals.scale.x):
+        # Flips both Top and Bottom sprites simultaneously without desyncing
+        # Including the hurtbox is fine since it is not involved in moving,
+        # only projectile collisions. It flips together with the sprites
+        visuals.scale.x = lerp(visuals.scale.x, 1.0*facing_direction, FLIP_SPEED*delta)
+        if abs(visuals.scale.x - facing_direction) < 0.01:
+            visuals.scale.x = facing_direction
     
 func _ready() -> void:
     umbrella.modulate = current_color
@@ -46,13 +48,14 @@ func _physics_process(delta: float) -> void:
     var direction := Input.get_axis("left", "right")
     if is_touching:
         var diff: float = touch_target_x - global_position.x
-        if abs(diff) > 10:
+        if abs(diff) > TOUCH_DEAD_ZONE:
             direction = sign(diff)
             
     if direction:
-        velocity.x = direction * SPEED
-        set_facing(direction, delta)
+        velocity.x = move_toward(velocity.x, direction * SPEED, SPEED/5)
+        facing_direction = sign(direction)
     else:
-        velocity.x = move_toward(velocity.x, 0, SPEED)
+        velocity.x = move_toward(velocity.x, 0, SPEED/5)
+    update_facing(delta)
 
     move_and_slide()
