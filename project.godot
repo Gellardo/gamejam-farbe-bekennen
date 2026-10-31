@@ -13,7 +13,8 @@ config_version=5
 config/name="Color Rain"
 run/main_scene="uid://jh67x5kmvuvg"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cal5t8p6t53yt"
+config/icon="uid://cal5t8p6t53yt"
 
 [autoload]
 

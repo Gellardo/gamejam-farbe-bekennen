@@ -8,7 +8,7 @@
 shader = ExtResource("2_5ncwy")
 shader_parameter/pulse_speed = 4.505000210727619
 shader_parameter/min_brightness = 0.70000003325
-shader_parameter/max_brightness = 1.2000000095
+shader_parameter/max_brightness = 1.3000000142500001
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lhik"]
 height = 26.0

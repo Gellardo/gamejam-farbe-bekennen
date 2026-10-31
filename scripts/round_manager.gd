@@ -13,6 +13,7 @@ func _ready() -> void:
     start_new_round()
     spawner.all_drops_finished.connect(_on_all_drops_finished)
     restart_button.pressed.connect(reset)
+
 func _on_all_drops_finished():
     trigger_game_end()
     

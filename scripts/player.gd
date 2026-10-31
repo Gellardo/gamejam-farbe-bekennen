@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 const FLIP_SPEED = 25.0
-const TOUCH_DEAD_ZONE = 10
+const TOUCH_DEAD_ZONE = 20
 
 @onready var visuals = $Visuals
 @onready var umbrella = $Visuals/SpriteUmbrella
