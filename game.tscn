@@ -143,6 +143,7 @@ text = "Play Again"
 
 [node name="HighScoreLabel" type="Label" parent="HUD/GameOverPopup/VBoxContainer" unique_id=347059998]
 layout_mode = 2
+theme_override_constants/line_spacing = 5
 text = "High Score:
 1
 2
